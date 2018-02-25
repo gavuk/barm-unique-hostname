@@ -7,5 +7,6 @@
 # Created	2018-02-24
 ###
 
+cp sbin/barm-unique-hostname /usr/sbin/
 cp init.d/barm-unique-hostname /etc/init.d/
 update-rc.d barm-unique-hostname defaults
