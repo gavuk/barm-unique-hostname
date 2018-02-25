@@ -23,14 +23,11 @@ PIDFILE=/run/barm-unique-hostname.pid
 case "$1" in
   start)
 	log_daemon_msg "Starting $DESC" "$NAME"
-	start-stop-daemon --start --oknodo --quiet --exec "$DAEMON_SBIN" \
-		--pidfile "$PIDFILE" -- $DAEMON_OPTS >/dev/null
+	$DAEMON_SBIN
 	log_end_msg "$?"
 	;;
   stop)
 	log_daemon_msg "Stopping $DESC" "$NAME"
-	start-stop-daemon --stop --oknodo --quiet --exec "$DAEMON_SBIN" \
-		--pidfile "$PIDFILE"
 	log_end_msg "$?"
 	;;
   restart)
