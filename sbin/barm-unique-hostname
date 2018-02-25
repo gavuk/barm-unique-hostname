@@ -1,0 +1,21 @@
+#!/bin/bash
+
+###
+# Script to make sure the device has a unique hostname
+#
+# Author	Gavin Abson <gavin.abson@gmail.com>
+# Created	2018-02-24
+###
+
+# Get the serial number
+SN=`cat /proc/cpuinfo | grep 'Serial' | sed 's/.*: //g'`
+
+# Check the hostname
+if [ `hostname` != "barm-$SN" ]
+then
+  echo "Updating device hostname to barm-$SN"
+  echo "barm-$SN" > /etc/hostname
+  sed -i "s/`hostname`/barm-$SN/g" /etc/hosts
+  echo "Rebooting..."
+  reboot
+fi
